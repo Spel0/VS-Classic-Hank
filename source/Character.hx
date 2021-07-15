@@ -152,6 +152,22 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 				flipX = true;
+			case 'hank':
+				frames = Paths.getSparrowAtlas('characters/ClassicHank');
+
+				animation.addByPrefix('idle', 'Hank idle0', 24, false);
+				animation.addByPrefix('singDOWN', 'Hank sing down0', 24, false);
+				animation.addByPrefix('singUP', 'Hank sing up0', 24, false);
+				animation.addByPrefix('singLEFT', 'Hank sing left0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Hank sing right0', 24, false);
+
+				addOffset('idle');
+				addOffset('singDOWN');
+				addOffset('singUP');
+				addOffset('singLEFT');
+				addOffset('singRIGHT');
+
+				playAnim('idle');
 		}
 
 		dance();

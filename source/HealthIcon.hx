@@ -21,6 +21,7 @@ class HealthIcon extends FlxSprite
 		animation.add('bf-old', [4,5], 0, false, isPlayer);
 		animation.add('gf', [6], 0, false, isPlayer);
 		animation.add('bf-pixel', [7, 7], 0, false, isPlayer);
+		animation.add('hank', [2,3], 0, isPlayer);
 		animation.play(char);
 
 		switch(char)

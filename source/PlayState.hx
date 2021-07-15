@@ -736,6 +736,67 @@ class PlayState extends MusicBeatState
 	
 						add(stageCurtains);
 				}
+			case 'happy':
+				{
+					curStage = 'happy';
+					defaultCamZoom = 0.85;
+
+					var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('bgHappy'));
+					bg.antialiasing = true;
+					bg.scrollFactor.set(0.9, 0.9);
+					bg.active = false;
+					add(bg);
+
+					var tree:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('treeHappy'));
+					tree.updateHitbox();
+					tree.antialiasing = true;
+					tree.scrollFactor.set(0.9, 0.9);
+					tree.active = false;
+		
+					add(tree);
+		
+					var stageFront:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('front'));
+					stageFront.updateHitbox();
+					stageFront.antialiasing = true;
+					stageFront.scrollFactor.set(0.9, 0.9);
+					stageFront.active = false;
+					add(stageFront);
+				}
+			case 'evil':
+				{
+					curStage = 'evil';
+					defaultCamZoom = 0.85;
+
+					var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('bgEvil'));
+					bg.antialiasing = true;
+					bg.scrollFactor.set(0.9, 0.9);
+					bg.active = false;
+					add(bg);
+
+					
+					var tree:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('treeEvil'));
+					tree.updateHitbox();
+					tree.antialiasing = true;
+					tree.scrollFactor.set(0.9, 0.9);
+					tree.active = false;
+		
+					add(tree);
+		
+					var stageFront:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('front'));
+					stageFront.updateHitbox();
+					stageFront.antialiasing = true;
+					stageFront.scrollFactor.set(0.9, 0.9);
+					stageFront.active = false;
+					add(stageFront);
+
+					var deadSun:FlxSprite = new FlxSprite(1962, 1172).loadGraphic(Paths.image('sunDead'));
+					deadSun.updateHitbox();
+					deadSun.antialiasing = true;
+					deadSun.scrollFactor.set(0.9, 0.9);
+					deadSun.active = false;
+
+					add(deadSun);
+				}
 			default:
 			{
 					defaultCamZoom = 0.9;
@@ -833,6 +894,8 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'hank':
+				camPos.set(dad.getGraphicMidpoint().x + 400, dad.getGraphicMidpoint().y);
 		}
 
 
@@ -881,6 +944,10 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 220;
 				gf.x += 180;
 				gf.y += 300;
+			case 'happy' | 'evil':
+				boyfriend.setPosition(1466, 927);
+				dad.setPosition(409, 655);
+				gf.setPosition(904, 433);
 		}
 
 		if (!PlayStateChangeables.Optimize)

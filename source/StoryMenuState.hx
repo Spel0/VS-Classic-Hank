@@ -28,7 +28,7 @@ class StoryMenuState extends MusicBeatState
 	{
 	return [
 		['Test'],
-		['Test1','Test2','Test3']
+		['Crossface','Malevolent','BAMF']
 	];
 	}
 	var curDifficulty:Int = 1;
@@ -37,7 +37,7 @@ class StoryMenuState extends MusicBeatState
 
 	var weekCharacters:Array<Dynamic> = [
 		['bf', 'bf', 'gf'],
-		['', 'bf', 'gf']
+		['hank', 'bf', 'gf']
 	];
 
 	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/weekNames'));

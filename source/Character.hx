@@ -46,19 +46,7 @@ class Character extends FlxSprite
 				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
 				animation.addByPrefix('scared', 'GF FEAR', 24);
 
-				addOffset('cheer');
-				addOffset('sad', -2, -2);
-				addOffset('danceLeft', 0, -9);
-				addOffset('danceRight', 0, -9);
-
-				addOffset("singUP", 0, 4);
-				addOffset("singRIGHT", 0, -20);
-				addOffset("singLEFT", 0, -19);
-				addOffset("singDOWN", 0, -20);
-				addOffset('hairBlow', 45, -8);
-				addOffset('hairFall', 0, -9);
-
-				addOffset('scared', -2, -17);
+				loadOffsetFile(curCharacter);
 
 				playAnim('danceRight');
 			case 'bf':
@@ -84,20 +72,7 @@ class Character extends FlxSprite
 
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 
-				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -38, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset("singUPmiss", -29, 27);
-				addOffset("singRIGHTmiss", -30, 21);
-				addOffset("singLEFTmiss", 12, 24);
-				addOffset("singDOWNmiss", -11, -19);
-				addOffset("hey", 7, 4);
-				addOffset('firstDeath', 37, 11);
-				addOffset('deathLoop', 37, 5);
-				addOffset('deathConfirm', 37, 69);
-				addOffset('scared', -4);
+				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
 
@@ -114,15 +89,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS', 24, false);
 
-				addOffset('idle');
-				addOffset("singUP");
-				addOffset("singRIGHT");
-				addOffset("singLEFT");
-				addOffset("singDOWN");
-				addOffset("singUPmiss");
-				addOffset("singRIGHTmiss");
-				addOffset("singLEFTmiss");
-				addOffset("singDOWNmiss");
+				loadOffsetFile(curCharacter);
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
@@ -143,29 +110,47 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathConfirm', "RETRY CONFIRM", 24, false);
 				animation.play('firstDeath');
 
-				addOffset('firstDeath');
-				addOffset('deathLoop', -37);
-				addOffset('deathConfirm', -37);
+				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
 				// pixel bullshit
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
 				antialiasing = false;
 				flipX = true;
-			case 'hank':
-				frames = Paths.getSparrowAtlas('characters/ClassicHank');
+			case 'hankPhaseOne':
+				frames = Paths.getSparrowAtlas('characters/hankPhaseOne');
 
-				animation.addByPrefix('idle', 'Hank idle0', 24, false);
-				animation.addByPrefix('singDOWN', 'Hank sing down0', 24, false);
-				animation.addByPrefix('singUP', 'Hank sing up0', 24, false);
-				animation.addByPrefix('singLEFT', 'Hank sing left0', 24, false);
-				animation.addByPrefix('singRIGHT', 'Hank sing right0', 24, false);
+				animation.addByPrefix('idle', 'Hank Idle0', 24, false);
+				animation.addByPrefix('singDOWN', 'Hank Down0', 24, false);
+				animation.addByPrefix('singUP', 'Hank Up0', 24, false);
+				animation.addByPrefix('singLEFT', 'Hank Left0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Hank Right0', 24, false);
 
-				addOffset('idle');
-				addOffset('singDOWN');
-				addOffset('singUP');
-				addOffset('singLEFT');
-				addOffset('singRIGHT');
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+			case 'hankPhaseTwo':
+				frames = Paths.getSparrowAtlas('characters/hankPhaseTwo');
+
+				animation.addByPrefix('idle', 'P1 Idle0', 24, false);
+				animation.addByPrefix('singDOWN', 'P1 Down0', 24, false);
+				animation.addByPrefix('singUP', 'P1 Up0', 24, false);
+				animation.addByPrefix('singLEFT', 'P1  Left0', 24, false);
+				animation.addByPrefix('singRIGHT', 'P1 Right0', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+			case 'hankPhaseThree':
+				frames = Paths.getSparrowAtlas('characters/hankPhaseThree');
+
+				animation.addByPrefix('idle', 'P3 Idle0', 24, false);
+				animation.addByPrefix('singDOWN', 'P3 Down0', 24, false);
+				animation.addByPrefix('singUP', 'P3 Up0', 24, false);
+				animation.addByPrefix('singLEFT', 'P3  Left0', 24, false);
+				animation.addByPrefix('singRIGHT', 'P3 Right0', 24, false);
+
+				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
 		}
@@ -194,6 +179,17 @@ class Character extends FlxSprite
 			}
 		}
 	}
+
+	public function loadOffsetFile(character:String)
+		{
+			var offset:Array<String> = CoolUtil.coolTextFile(Paths.txt('images/characters/' + character + "Offsets", 'shared'));
+	
+			for (i in 0...offset.length)
+			{
+				var data:Array<String> = offset[i].split(' ');
+				addOffset(data[0], Std.parseInt(data[1]), Std.parseInt(data[2]));
+			}
+		}
 
 	override function update(elapsed:Float)
 	{
@@ -231,7 +227,7 @@ class Character extends FlxSprite
 	/**
 	 * FOR GF DANCING SHIT
 	 */
-	public function dance()
+	public function dance(forced:Bool = false)
 	{
 		if (!debugMode)
 		{
@@ -252,7 +248,7 @@ class Character extends FlxSprite
 				case 'bf-pixel':
 					playAnim('idle');
 				default:
-					playAnim('idle');
+					playAnim('idle', forced);
 			}
 		}
 	}

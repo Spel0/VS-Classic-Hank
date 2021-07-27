@@ -1,4 +1,6 @@
 bf
 gf
 bf-pixel
-hank
+hankPhaseOne
+hankPhaseTwo
+hankPhaseThree

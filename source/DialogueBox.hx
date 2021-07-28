@@ -46,6 +46,18 @@ class DialogueBox extends FlxSpriteGroup
 			case 'thorns':
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'crossface':
+				FlxG.sound.playMusic(Paths.music('fresh'));
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+				FlxG.sound.music.time = 2300;
+			case 'malevolent':
+				FlxG.sound.playMusic(Paths.music('calliope'));
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+				FlxG.sound.music.time = 800;
+			case 'bamf':
+				FlxG.sound.playMusic(Paths.music('mainTheme'));
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+				FlxG.sound.music.time = 500;
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -87,6 +99,11 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
+			case 'crossface' | 'malevolent' | 'bamf':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('dialogueBox', 'shared');
+				box.animation.addByPrefix('normalOpen', 'dialogueBox Text Box Appear', 24, false);
+				box.animation.addByIndices('normal', 'dialogueBox Text Box Appear', [0], "", 24);
 		}
 
 		this.dialogueList = dialogueList;
@@ -94,34 +111,72 @@ class DialogueBox extends FlxSpriteGroup
 		if (!hasDialog)
 			return;
 		
-		portraitLeft = new FlxSprite(-20, 40);
-		portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
-		portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
-		portraitLeft.updateHitbox();
-		portraitLeft.scrollFactor.set();
-		add(portraitLeft);
-		portraitLeft.visible = false;
+		switch (PlayState.storyWeek)
+		{
+			case 6:
+			{
+				portraitLeft = new FlxSprite(-20, 40);
+				portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
 
-		portraitRight = new FlxSprite(0, 40);
-		portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
-		portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-		portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
-		portraitRight.updateHitbox();
-		portraitRight.scrollFactor.set();
-		add(portraitRight);
-		portraitRight.visible = false;
-		
-		box.animation.play('normalOpen');
-		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
-		box.updateHitbox();
-		add(box);
+				portraitRight = new FlxSprite(0, 40);
+				portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
+				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
+				
+				box.animation.play('normalOpen');
+				box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+				box.updateHitbox();
+				add(box);
 
-		box.screenCenter(X);
-		portraitLeft.screenCenter(X);
+				box.screenCenter(X);
+				portraitLeft.screenCenter(X);
 
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
-		add(handSelect);
+				handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+				add(handSelect);
+			}
+			case 1:
+			{
+				portraitLeft = new FlxSprite(186, 220);
+				portraitLeft.frames = Paths.getSparrowAtlas('hankPort', 'shared');
+				switch(PlayState.SONG.song.toLowerCase())
+					{
+						case 'crossface':
+							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortNeutral', 24, false);
+						case 'malevolent':
+							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortNeutralBandages', 24, false);
+						case 'bamf':
+							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortImGonnaKickYourAss', 24, false);
+					}
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
+
+				portraitRight = new FlxSprite(750, 75);
+				portraitRight.frames = Paths.getSparrowAtlas('bf', 'shared');
+				portraitRight.animation.addByPrefix('enter', 'default', 24, false);
+				portraitRight.animation.addByPrefix('enterWorried', 'shaking', 24, false);
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
+				
+				box.animation.play('normalOpen');
+				add(box);
+
+				box.screenCenter(X);
+			}
+		}
 
 
 		if (!talkingRight)
@@ -189,7 +244,7 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					isEnding = true;
 
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns')
+					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'crossface' || PlayState.SONG.song.toLowerCase() == 'malevolent' || PlayState.SONG.song.toLowerCase() == 'bamf')
 						FlxG.sound.music.fadeOut(2.2, 0);
 
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
@@ -247,6 +302,13 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
+				}
+			case 'bfWorried':
+				portraitLeft.visible = false;
+				if (!portraitRight.visible)
+				{
+					portraitRight.visible = true;
+					portraitRight.animation.play('enterWorried');
 				}
 		}
 	}

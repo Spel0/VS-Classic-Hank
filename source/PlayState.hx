@@ -202,6 +202,7 @@ class PlayState extends MusicBeatState
 
 	var limo:FlxSprite;
 	var grpLimoDancers:FlxTypedGroup<BackgroundDancer>;
+	var bgGrunt:FlxSprite;
 	var fastCar:FlxSprite;
 	var songName:FlxText;
 	var upperBoppers:FlxSprite;
@@ -913,6 +914,18 @@ class PlayState extends MusicBeatState
 							stageFront.scrollFactor.set(0.9, 0.9);
 							stageFront.active = false;
 							add(stageFront);
+
+							if (SONG.song.toLowerCase() == 'crossface')
+							{
+								bgGrunt = new FlxSprite(1724, 655);
+								bgGrunt.frames = Paths.getSparrowAtlas('BackgroundGrunt');
+								bgGrunt.animation.addByPrefix('idle', 'Dancing Grunt', 24, false);
+								bgGrunt.updateHitbox();
+								bgGrunt.antialiasing = true;
+								bgGrunt.scrollFactor.set(0.9, 0.9);
+								bgGrunt.animation.play('idle');
+								add(bgGrunt);
+							}
 						}
 					case 'evil':
 						{
@@ -4539,6 +4552,9 @@ class PlayState extends MusicBeatState
 			if (curBeat % 2 == 0 && dad.animOffsets.exists('danceRight'))
 				dad.playAnim('danceRight');
 		}
+
+		if (bgGrunt != null)
+			bgGrunt.animation.play('idle', true);
 
 		if (SONG.notes[Math.floor(curStep / 16)] != null)
 		{

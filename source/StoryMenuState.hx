@@ -28,7 +28,7 @@ class StoryMenuState extends MusicBeatState
 	{
 	return [
 		['Test'],
-		['Crossface','Malevolent','BAMF']
+		['Crossface','Iniquitous','BAMF']
 	];
 	}
 	var curDifficulty:Int = 1;

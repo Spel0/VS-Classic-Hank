@@ -470,8 +470,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/thorns/thornsDialogue'));
 			case 'crossface':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/crossface/dialogue'));
-			case 'malevolent':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('data/malevolent/dialogue'));
+			case 'iniquitous':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/iniquitous/dialogue'));
 			case 'bamf':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/bamf/dialogue'));
 		}
@@ -1375,7 +1375,7 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
-				case 'crossface' | 'malevolent' | 'bamf':
+				case 'crossface' | 'iniquitous' | 'bamf':
 					schoolIntro(doof);
 				default:
 					startCountdown();

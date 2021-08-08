@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.util.FlxColor;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 
@@ -17,10 +18,13 @@ class Character extends FlxSprite
 
 	public var holdTimer:Float = 0;
 
+	public var healthColor:FlxColor; 
+
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
 		super(x, y);
 
+		healthColor = isPlayer ? 0xFF66FF33 : 0xFFFF0000;
 		animOffsets = new Map<String, Array<Dynamic>>();
 		curCharacter = character;
 		this.isPlayer = isPlayer;
@@ -155,6 +159,8 @@ class Character extends FlxSprite
 				playAnim('idle');
 		}
 
+		if (curCharacter.startsWith('hank'))
+			healthColor = FlxColor.GRAY;
 		dance();
 
 		if (isPlayer)

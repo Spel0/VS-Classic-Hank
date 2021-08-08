@@ -23281,6 +23281,7 @@
   "song": "BAMF",
   "needsVoices": true,
   "stage": "evil",
+  "noteStyle": "hank",
   "validScore": true,
   "bpm": 188,
   "speed": 1.8

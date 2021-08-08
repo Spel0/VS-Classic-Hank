@@ -2055,7 +2055,7 @@ class PlayState extends MusicBeatState
 				else
 					oldNote = null;
 
-				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
+				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, false, gottaHitNote);
 
 				if (!gottaHitNote && PlayStateChangeables.Optimize)
 					continue;
@@ -2077,7 +2077,7 @@ class PlayState extends MusicBeatState
 				{
 					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true);
+					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true, false, gottaHitNote);
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
 
@@ -2179,7 +2179,51 @@ class PlayState extends MusicBeatState
 							babyArrow.animation.add('pressed', [4, 8], 12, false);
 							babyArrow.animation.add('confirm', [12, 16], 24, false);
 					}
+				case 'hank':
+					if (player == 0)
+					{
+						babyArrow.frames = Paths.getSparrowAtlas('hankNotes');
+					for (j in 0...4)
+					{
+						babyArrow.animation.addByPrefix(dataColor[j], 'arrow' + dataSuffix[j]);	
+					}
 
+					var lowerDir:String = dataSuffix[i].toLowerCase();
+
+					babyArrow.animation.addByPrefix('static', 'arrow' + dataSuffix[i]);
+					babyArrow.animation.addByPrefix('pressed', lowerDir + ' press', 24, false);
+					babyArrow.animation.addByPrefix('confirm', lowerDir + ' confirm', 24, false);
+
+					babyArrow.x += Note.swagWidth * i;
+
+					if(FlxG.save.data.antialiasing)
+						{
+							babyArrow.antialiasing = true;
+						}
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					}
+					else
+					{
+						babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					for (j in 0...4)
+					{
+						babyArrow.animation.addByPrefix(dataColor[j], 'arrow' + dataSuffix[j]);	
+					}
+
+					var lowerDir:String = dataSuffix[i].toLowerCase();
+
+					babyArrow.animation.addByPrefix('static', 'arrow' + dataSuffix[i]);
+					babyArrow.animation.addByPrefix('pressed', lowerDir + ' press', 24, false);
+					babyArrow.animation.addByPrefix('confirm', lowerDir + ' confirm', 24, false);
+
+					babyArrow.x += Note.swagWidth * i;
+
+					if(FlxG.save.data.antialiasing)
+						{
+							babyArrow.antialiasing = true;
+						}
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					}
 				default:
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
 					for (j in 0...4)

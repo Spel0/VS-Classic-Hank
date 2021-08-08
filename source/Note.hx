@@ -61,7 +61,7 @@ class Note extends FlxSprite
 
 	public var children:Array<Note> = [];
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false, ?mustHit:Bool = false)
 	{
 		super();
 
@@ -143,6 +143,46 @@ class Note extends FlxSprite
 
 					setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 					updateHitbox();
+				case 'hank':
+					trace(mustHit);
+					if (!mustHit)
+					{
+						frames = Paths.getSparrowAtlas('hankNotes');
+
+						for (i in 0...4)
+						{
+						animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
+						animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+						animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+						}
+
+						setGraphicSize(Std.int(width * 0.7));
+						updateHitbox();
+					
+						if(FlxG.save.data.antialiasing)
+							{
+								antialiasing = true;
+							}
+					}
+					else
+					{
+						frames = Paths.getSparrowAtlas('NOTE_assets');
+
+						for (i in 0...4)
+						{
+							animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
+							animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+							animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+						}
+
+						setGraphicSize(Std.int(width * 0.7));
+						updateHitbox();
+						
+						if(FlxG.save.data.antialiasing)
+							{
+								antialiasing = true;
+							}
+					}
 				default:
 					frames = Paths.getSparrowAtlas('NOTE_assets');
 

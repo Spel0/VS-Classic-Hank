@@ -24150,6 +24150,7 @@
   "song": "Iniquitous",
   "needsVoices": true,
   "stage": "happy",
+  "noteStyle": "hank",
   "validScore": true,
   "speed": 3,
   "bpm": 185

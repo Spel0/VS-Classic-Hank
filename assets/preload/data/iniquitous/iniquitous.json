@@ -22313,6 +22313,7 @@
   "song": "Iniquitous",
   "needsVoices": true,
   "stage": "happy",
+  "noteStyle": "hank",
   "validScore": true,
   "bpm": 185,
   "speed": 1.8

@@ -1375,7 +1375,41 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
-				case 'crossface' | 'iniquitous' | 'bamf':
+				case 'crossface':
+				{
+					inCutscene = true;
+					var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+					blackScreen.cameras = [camHUD];
+					add(blackScreen);
+					blackScreen.scrollFactor.set();
+
+					var nevada = new FlxText(0, 0, 0, "SOMEWHERE IN NEVADA", 72);
+					nevada.font = Paths.font('impact');
+					nevada.bold = true;
+					nevada.color = FlxColor.WHITE;
+					nevada.cameras = [camHUD];
+					nevada.screenCenter();
+					nevada.alpha = 0;
+					nevada.antialiasing = true;
+					add(nevada);
+
+					FlxTween.tween(nevada, {alpha:1}, 2);
+					new FlxTimer().start(3, function(tmr:FlxTimer) {
+						FlxTween.tween(nevada, {alpha:0}, 2);
+					});
+
+					new FlxTimer().start(5, function(tmr:FlxTimer) {
+						remove(nevada);
+						FlxTween.tween(blackScreen, {alpha:0}, 1);
+						new FlxTimer().start(1, function(tmr:FlxTimer) {
+							remove(blackScreen);
+							schoolIntro(doof);
+						});
+					});
+				}
+				case 'iniquitous':
+					schoolIntro(doof);
+				case 'bamf':
 					schoolIntro(doof);
 				default:
 					startCountdown();
@@ -1412,8 +1446,10 @@ class PlayState extends MusicBeatState
 		senpaiEvil.screenCenter();
 
 		if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'roses'
-			|| StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns')
+			|| StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns' 
+		|| StringTools.replace(PlayState.SONG.song, " ","-").toLowerCase() == 'crossface')
 		{
+			black.alpha = 0;
 			remove(black);
 
 			if (StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase() == 'thorns')

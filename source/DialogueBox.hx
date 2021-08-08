@@ -50,7 +50,7 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.playMusic(Paths.music('fresh'));
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 				FlxG.sound.music.time = 2300;
-			case 'malevolent':
+			case 'iniquitous':
 				FlxG.sound.playMusic(Paths.music('calliope'));
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 				FlxG.sound.music.time = 800;
@@ -99,7 +99,7 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
-			case 'crossface' | 'malevolent' | 'bamf':
+			case 'crossface' | 'iniquitous' | 'bamf':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('dialogueBox', 'shared');
 				box.animation.addByPrefix('normalOpen', 'dialogueBox Text Box Appear', 24, false);
@@ -152,7 +152,7 @@ class DialogueBox extends FlxSpriteGroup
 					{
 						case 'crossface':
 							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortNeutral', 24, false);
-						case 'malevolent':
+						case 'iniquitous':
 							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortNeutralBandages', 24, false);
 						case 'bamf':
 							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortImGonnaKickYourAss', 24, false);
@@ -244,7 +244,7 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					isEnding = true;
 
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'crossface' || PlayState.SONG.song.toLowerCase() == 'malevolent' || PlayState.SONG.song.toLowerCase() == 'bamf')
+					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns' || PlayState.SONG.song.toLowerCase() == 'crossface' || PlayState.SONG.song.toLowerCase() == 'iniquitous' || PlayState.SONG.song.toLowerCase() == 'bamf')
 						FlxG.sound.music.fadeOut(2.2, 0);
 
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)

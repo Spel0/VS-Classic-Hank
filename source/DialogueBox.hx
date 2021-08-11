@@ -46,10 +46,6 @@ class DialogueBox extends FlxSpriteGroup
 			case 'thorns':
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'crossface':
-				FlxG.sound.playMusic(Paths.music('fresh'));
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-				FlxG.sound.music.time = 2300;
 			case 'iniquitous':
 				FlxG.sound.playMusic(Paths.music('calliope'));
 				FlxG.sound.music.fadeIn(1, 0, 0.8);

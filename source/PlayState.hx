@@ -192,6 +192,10 @@ class PlayState extends MusicBeatState
 	var idleBeat:Int = 2; // how frequently bf and dad would play their idle animation(1 - every beat, 2 - every 2 beats and so on)
 
 	public var dialogue:Array<String> = ['dad:blah blah blah', 'bf:coolswag'];
+	var hasDialogue:Bool = false;
+	var doof:DialogueBox;
+	var dialogueMusic:String;
+	var dialogueMusicTimePos:Int = 0;
 
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
@@ -1161,7 +1165,7 @@ class PlayState extends MusicBeatState
 
 		trace("SF CALC: " + Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
 
-		var doof:DialogueBox = new DialogueBox(false, dialogue);
+		doof = new DialogueBox(false, dialogue);
 		// doof.x += 70;
 		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
@@ -1378,34 +1382,11 @@ class PlayState extends MusicBeatState
 				case 'crossface':
 				{
 					inCutscene = true;
-					var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
-					blackScreen.cameras = [camHUD];
-					add(blackScreen);
-					blackScreen.scrollFactor.set();
-
-					var nevada = new FlxText(0, 0, 0, "SOMEWHERE IN NEVADA", 72);
-					nevada.font = Paths.font('impact');
-					nevada.bold = true;
-					nevada.color = FlxColor.WHITE;
-					nevada.cameras = [camHUD];
-					nevada.screenCenter();
-					nevada.alpha = 0;
-					nevada.antialiasing = true;
-					add(nevada);
-
-					FlxTween.tween(nevada, {alpha:1}, 2);
-					new FlxTimer().start(3, function(tmr:FlxTimer) {
-						FlxTween.tween(nevada, {alpha:0}, 2);
-					});
-
-					new FlxTimer().start(5, function(tmr:FlxTimer) {
-						remove(nevada);
-						FlxTween.tween(blackScreen, {alpha:0}, 1);
-						new FlxTimer().start(1, function(tmr:FlxTimer) {
-							remove(blackScreen);
-							schoolIntro(doof);
-						});
-					});
+					hasDialogue = true;
+					dialogueMusic = 'fresh';
+					dialogueMusicTimePos = 2300;
+					var video:MP4Handler = new MP4Handler();
+					video.playMP4(Paths.video('hankcutsceneworksmaybe'), finish);
 				}
 				case 'iniquitous':
 					schoolIntro(doof);
@@ -1426,6 +1407,23 @@ class PlayState extends MusicBeatState
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, releaseInput);
 		super.create();
+	}
+
+	function finish()
+	{
+		if (hasDialogue)
+		{
+			if (dialogueMusic != null)
+			{
+				FlxG.sound.playMusic(Paths.music(dialogueMusic));
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+				if (dialogueMusicTimePos != 0)
+					FlxG.sound.music.time = dialogueMusicTimePos;
+			}
+			schoolIntro(doof);
+		}
+		else
+			startCountdown();
 	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void

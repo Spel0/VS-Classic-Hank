@@ -128,6 +128,12 @@ class Paths
 		return 'assets/fonts/$key';
 	}
 
+	inline static public function video(key:String, ?library:String)
+		{
+			trace('assets/videos/$key.mp4');
+			return getPath('videos/$key.mp4', BINARY, library);
+		}
+
 	inline static public function getSparrowAtlas(key:String, ?library:String, ?isCharacter:Bool = false)
 	{
 		var usecahce = FlxG.save.data.cacheImages;

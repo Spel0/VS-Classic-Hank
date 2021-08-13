@@ -67,8 +67,9 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
-		addSong("test",0,"bf-pixel");
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('data/freeplaySonglist'));
+		if (Highscore.getWeekScore(1, 2) > 0 || Highscore.getWeekScore(1, 1) > 0 || Highscore.getWeekScore(1, 0) > 0)
+			initSonglist.push('lol:clown:0');
 
 		//var diffList = "";
 
@@ -416,6 +417,9 @@ class FreeplayState extends MusicBeatState
 		if (curDifficulty > 2)
 			curDifficulty = 0;
 
+		if (songs[curSelected].songName == 'lol')
+			curDifficulty = 2;
+
 
 		// adjusting the highscore song name to be compatible (changeDiff)
 		var songHighscore = StringTools.replace(songs[curSelected].songName, " ", "-");
@@ -462,6 +466,9 @@ class FreeplayState extends MusicBeatState
 					curDifficulty = 2;
 			}
 		}
+
+		if (songs[curSelected].songName == 'lol')
+			changeDiff(1);
 
 		// selector.y = (70 * curSelected) + 30;
 		

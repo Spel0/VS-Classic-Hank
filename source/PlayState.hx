@@ -485,6 +485,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/iniquitous/dialogue'));
 			case 'bamf':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/bamf/dialogue'));
+			case 'lol':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('data/lol/dialogue'));
 		}
 
 		// defaults if no stage was found in chart
@@ -905,13 +907,13 @@ class PlayState extends MusicBeatState
 							curStage = 'happy';
 							defaultCamZoom = 0.85;
 		
-							var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('bgHappy'));
+							var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('bgHappy', 'week1'));
 							bg.antialiasing = true;
 							bg.scrollFactor.set(0.9, 0.9);
 							bg.active = false;
 							add(bg);
 		
-							var tree:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('treeHappy'));
+							var tree:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('treeHappy', 'week1'));
 							tree.updateHitbox();
 							tree.antialiasing = true;
 							tree.scrollFactor.set(0.9, 0.9);
@@ -919,7 +921,7 @@ class PlayState extends MusicBeatState
 				
 							add(tree);
 				
-							var stageFront:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('front'));
+							var stageFront:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('front', 'week1'));
 							stageFront.updateHitbox();
 							stageFront.antialiasing = true;
 							stageFront.scrollFactor.set(0.9, 0.9);
@@ -929,7 +931,7 @@ class PlayState extends MusicBeatState
 							if (SONG.song.toLowerCase() == 'crossface')
 							{
 								bgGrunt = new FlxSprite(1724, 655);
-								bgGrunt.frames = Paths.getSparrowAtlas('BackgroundGrunt');
+								bgGrunt.frames = Paths.getSparrowAtlas('BackgroundGrunt', 'week1');
 								bgGrunt.animation.addByPrefix('idle', 'Dancing Grunt', 24, false);
 								bgGrunt.updateHitbox();
 								bgGrunt.antialiasing = true;
@@ -943,14 +945,14 @@ class PlayState extends MusicBeatState
 							curStage = 'evil';
 							defaultCamZoom = 0.85;
 		
-							var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('bgEvil'));
+							var bg:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('bgEvil', 'week1'));
 							bg.antialiasing = true;
 							bg.scrollFactor.set(0.9, 0.9);
 							bg.active = false;
 							add(bg);
 		
 							
-							var tree:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('treeEvil'));
+							var tree:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('treeEvil', 'week1'));
 							tree.updateHitbox();
 							tree.antialiasing = true;
 							tree.scrollFactor.set(0.9, 0.9);
@@ -958,14 +960,14 @@ class PlayState extends MusicBeatState
 				
 							add(tree);
 				
-							var stageFront:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('front'));
+							var stageFront:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('front', 'week1'));
 							stageFront.updateHitbox();
 							stageFront.antialiasing = true;
 							stageFront.scrollFactor.set(0.9, 0.9);
 							stageFront.active = false;
 							add(stageFront);
 		
-							var deadSun:FlxSprite = new FlxSprite(1928, 1057).loadGraphic(Paths.image('sunDead'));
+							var deadSun:FlxSprite = new FlxSprite(1928, 1057).loadGraphic(Paths.image('sunDead', 'week1'));
 							deadSun.updateHitbox();
 							deadSun.antialiasing = true;
 							deadSun.scrollFactor.set(0.9, 0.9);
@@ -1100,7 +1102,7 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-			case 'hank-PhaseOne' | 'hank-PhaseTwo' | 'hank-PhaseThree':
+			case 'hank-PhaseOne' | 'hank-PhaseTwo' | 'hank-PhaseThree' | 'clown':
 				camPos.set(dad.getGraphicMidpoint().x + 400, dad.getGraphicMidpoint().y);
 		}
 
@@ -1141,7 +1143,10 @@ class PlayState extends MusicBeatState
 				gf.y += 300;
 			case 'happy' | 'evil':
 				boyfriend.setPosition(1466, 927);
-				dad.setPosition(409, 750);
+				if (dad.curCharacter.startsWith('hank'))
+					dad.setPosition(409, 750);
+				else if (dad.curCharacter == 'clown')
+					dad.setPosition(408, 575);
 				gf.setPosition(904, 433);
 		}
 
@@ -1428,7 +1433,10 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			startCountdown();
+			if (StringTools.replace(curSong, " ", "-").toLowerCase() == 'lol')
+				schoolIntro(doof);
+			else
+				startCountdown();
 		}
 
 		if (!loadRep)
@@ -2933,6 +2941,9 @@ class PlayState extends MusicBeatState
 					case 'senpai' | 'senpai-angry':
 						camFollow.y = dad.getMidpoint().y - 430;
 						camFollow.x = dad.getMidpoint().x - 100;
+					case 'clown':
+						camFollow.x = dad.getGraphicMidpoint().x + 300;
+						camFollow.y = dad.getGraphicMidpoint().y;
 				}
 			}
 

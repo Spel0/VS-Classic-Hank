@@ -47,17 +47,20 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'crossface':
-				FlxG.sound.playMusic(Paths.music('fresh'));
+				FlxG.sound.playMusic(Paths.music('fresh'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 				FlxG.sound.music.time = 2300;
 			case 'iniquitous':
-				FlxG.sound.playMusic(Paths.music('calliope'));
+				FlxG.sound.playMusic(Paths.music('calliope'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 				FlxG.sound.music.time = 800;
 			case 'bamf':
-				FlxG.sound.playMusic(Paths.music('mainTheme'));
+				FlxG.sound.playMusic(Paths.music('mainTheme'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 				FlxG.sound.music.time = 500;
+			case 'lol':
+				FlxG.sound.playMusic(Paths.music('API'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.4);
 		}
 
 		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
@@ -99,7 +102,7 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
-			case 'crossface' | 'iniquitous' | 'bamf':
+			case 'crossface' | 'iniquitous' | 'bamf' | 'lol':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('dialogueBox', 'shared');
 				box.animation.addByPrefix('normalOpen', 'dialogueBox Text Box Appear', 24, false);
@@ -146,17 +149,41 @@ class DialogueBox extends FlxSpriteGroup
 			}
 			case 1:
 			{
-				portraitLeft = new FlxSprite(186, 220);
+				portraitLeft = new FlxSprite(186, 140);
 				portraitLeft.frames = Paths.getSparrowAtlas('hankPort', 'shared');
 				switch(PlayState.SONG.song.toLowerCase())
 					{
 						case 'crossface':
-							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortNeutral', 24, false);
+							portraitLeft.animation.addByPrefix('enter', 'hankPort hankPort1', 24, false);
 						case 'iniquitous':
-							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortNeutralBandages', 24, false);
+							portraitLeft.animation.addByPrefix('enter', 'hankPort hankPort2', 24, false);
 						case 'bamf':
-							portraitLeft.animation.addByPrefix('enter', 'HankPort HankPortImGonnaKickYourAss', 24, false);
+							portraitLeft.animation.addByPrefix('enter', 'hankPort hankPort3', 24, false);
 					}
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
+
+				portraitRight = new FlxSprite(750, 75);
+				portraitRight.frames = Paths.getSparrowAtlas('bf', 'shared');
+				portraitRight.animation.addByPrefix('enter', 'default', 24, false);
+				portraitRight.animation.addByPrefix('enterWorried', 'shaking', 24, false);
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
+				
+				box.animation.play('normalOpen');
+				add(box);
+
+				box.screenCenter(X);
+			}
+			case 0:
+			{
+				portraitLeft = new FlxSprite(186, 220);
+				portraitLeft.frames = Paths.getSparrowAtlas('trickyPort', 'shared');
+				portraitLeft.animation.addByPrefix('enter', 'trickyPort trickyNeutral', 24, false);
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);

@@ -36,7 +36,7 @@ class Character extends FlxSprite
 		{
 			case 'gf':
 				// GIRLFRIEND CODE
-				tex = Paths.getSparrowAtlas('characters/GF_assets');
+				tex = Paths.getSparrowAtlas('GF_assets', 'shared', true);
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
@@ -54,7 +54,7 @@ class Character extends FlxSprite
 
 				playAnim('danceRight');
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
+				var tex = Paths.getSparrowAtlas('BOYFRIEND', 'shared', true);
 				frames = tex;
 
 				trace(tex.frames.length);
@@ -82,7 +82,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 			case 'bf-pixel':
-				frames = Paths.getSparrowAtlas('characters/bfPixel');
+				frames = Paths.getSparrowAtlas('bfPixel', 'shared', true);
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
 				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
 				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
@@ -107,7 +107,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 			case 'bf-pixel-dead':
-				frames = Paths.getSparrowAtlas('characters/bfPixelsDEAD');
+				frames = Paths.getSparrowAtlas('bfPixelsDEAD', 'shared', true);
 				animation.addByPrefix('singUP', "BF Dies pixel", 24, false);
 				animation.addByPrefix('firstDeath', "BF Dies pixel", 24, false);
 				animation.addByPrefix('deathLoop', "Retry Loop", 24, true);
@@ -122,7 +122,7 @@ class Character extends FlxSprite
 				antialiasing = false;
 				flipX = true;
 			case 'hank-PhaseOne':
-				frames = Paths.getSparrowAtlas('characters/hankPhaseOne');
+				frames = Paths.getSparrowAtlas('hankPhaseOne', 'shared', true);
 
 				animation.addByPrefix('idle', 'Hank Idle0', 24, false);
 				animation.addByPrefix('singDOWN', 'Hank Down0', 24, false);
@@ -134,7 +134,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'hank-PhaseTwo':
-				frames = Paths.getSparrowAtlas('characters/hankPhaseTwo');
+				frames = Paths.getSparrowAtlas('hankPhaseTwo', 'shared', true);
 
 				animation.addByPrefix('idle', 'P1 Idle0', 24, false);
 				animation.addByPrefix('singDOWN', 'P1 Down0', 24, false);
@@ -146,7 +146,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'hank-PhaseThree':
-				frames = Paths.getSparrowAtlas('characters/hankPhaseThree');
+				frames = Paths.getSparrowAtlas('hankPhaseThree', 'shared', true);
 
 				animation.addByPrefix('idle', 'P3 Idle0', 24, false);
 				animation.addByPrefix('singDOWN', 'P3 Down0', 24, false);
@@ -157,9 +157,21 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
+			case 'clown':
+				frames = Paths.getSparrowAtlas('FunnyClown', 'shared', true);
+
+				animation.addByPrefix('idle', 'Tricky Idle0', 24, false);
+				animation.addByPrefix('singDOWN', 'Tricky Down0', 24, false);
+				animation.addByPrefix('singUP', 'Tricky Up0', 24, false);
+				animation.addByPrefix('singLEFT', 'Tricky Left0', 24, false);
+				animation.addByPrefix('singRIGHT', 'Tricky Right0', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
 		}
 
-		if (curCharacter.startsWith('hank'))
+		if (curCharacter.startsWith('hank') || curCharacter == 'clown')
 			healthColor = FlxColor.GRAY;
 		dance();
 

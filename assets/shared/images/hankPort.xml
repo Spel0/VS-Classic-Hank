@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<TextureAtlas imagePath="HankPort.png"><SubTexture name="HankPort HankPortNeutralBandages0000" x="0" y="0" width="308" height="258" frameX="0" frameY="0" frameWidth="308" frameHeight="258" />
-<SubTexture name="HankPort HankPortImGonnaKickYourAss0000" x="308" y="0" width="308" height="258" frameX="0" frameY="0" frameWidth="308" frameHeight="258" />
-<SubTexture name="HankPort HankPortNeutral0000" x="616" y="0" width="308" height="258" frameX="0" frameY="0" frameWidth="308" frameHeight="258" />
+<TextureAtlas imagePath="hankPort.png"><SubTexture name="hankPort hankPort10000" x="0" y="0" width="313" height="337" frameX="0" frameY="0" frameWidth="313" frameHeight="337" />
+<SubTexture name="hankPort hankPort20000" x="313" y="0" width="313" height="337" frameX="0" frameY="0" frameWidth="313" frameHeight="337" />
+<SubTexture name="hankPort hankPort30000" x="626" y="0" width="313" height="337" frameX="0" frameY="0" frameWidth="313" frameHeight="337" />
 </TextureAtlas>

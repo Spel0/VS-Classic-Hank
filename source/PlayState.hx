@@ -972,6 +972,7 @@ class PlayState extends MusicBeatState
 							deadSun.antialiasing = true;
 							deadSun.scrollFactor.set(0.9, 0.9);
 							deadSun.active = false;
+							deadSun.visible = false;
 		
 							add(deadSun);
 						}

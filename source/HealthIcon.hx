@@ -3,44 +3,56 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 
+using StringTools;
+
 class HealthIcon extends FlxSprite
 {
+	public var char:String = 'bf';
+	public var isPlayer:Bool = false;
+	public var isOldIcon:Bool = false;
+
 	/**
 	 * Used for FreeplayState! If you use it elsewhere, prob gonna annoying
 	 */
 	public var sprTracker:FlxSprite;
 
-	public function new(char:String = 'bf', isPlayer:Bool = false)
+	public function new(?char:String = "bf", ?isPlayer:Bool = false)
 	{
 		super();
 
-		if(FlxG.save.data.antialiasing)
+		this.char = char;
+		this.isPlayer = isPlayer;
+
+		isPlayer = isOldIcon = false;
+
+		if (FlxG.save.data.antialiasing)
+		{
+			switch(char)
 			{
-				antialiasing = true;
+				case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':
+					antialiasing = false;
+				default:
+					antialiasing = true;
 			}
-		if (char == 'sm')
-		{
-			loadGraphic(Paths.image("stepmania-icon"));
-			return;
-		}
-		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
-		animation.add('bf', [0, 1], 0, false, isPlayer);
-		animation.add('face', [2,3], 0, false, isPlayer);
-		animation.add('bf-old', [4,5], 0, false, isPlayer);
-		animation.add('gf', [6], 0, false, isPlayer);
-		animation.add('bf-pixel', [7, 7], 0, false, isPlayer);
-		animation.add('hankPhaseOne', [8,9], 0, false, isPlayer);
-		animation.add('hankPhaseTwo', [8,9], 0, false, isPlayer);
-		animation.add('hankPhaseThree', [8,9], 0, false, isPlayer);
-		animation.play(char);
-
-		switch(char)
-		{
-			case 'bf-pixel':
-				antialiasing = false;
 		}
 
+		changeIcon(char);
 		scrollFactor.set();
+	}
+
+	public function swapOldIcon()
+	{
+		(isOldIcon = !isOldIcon) ? changeIcon("bf-old") : changeIcon(char);
+	}
+
+	public function changeIcon(char:String)
+	{
+		if (char != 'bf-pixel' && char != 'bf-old')
+			char = char.split("-")[0];
+
+		loadGraphic(Paths.image('icons/icon-' + char), true, 150, 150);
+		animation.add(char, [0, 1], 0, false, isPlayer);
+		animation.play(char);
 	}
 
 	override function update(elapsed:Float)

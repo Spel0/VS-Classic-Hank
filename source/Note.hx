@@ -39,6 +39,8 @@ class Note extends FlxSprite
 
 	public var noteYOff:Int = 0;
 
+	public var charterSelected:Bool = false;
+
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
 	public static var GREEN_NOTE:Int = 2;
@@ -59,9 +61,11 @@ class Note extends FlxSprite
 	public var spotInLine:Int = 0;
 	public var sustainActive:Bool = true;
 
+	public var isAlt:Bool = false;
+
 	public var children:Array<Note> = [];
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false, ?mustHit:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false, ?mustHit:Bool = false, ?isAlt:Bool = false)
 	{
 		super();
 
@@ -70,6 +74,7 @@ class Note extends FlxSprite
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
+		this.isAlt = isAlt;
 
 		x += 50;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
@@ -144,7 +149,6 @@ class Note extends FlxSprite
 					setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 					updateHitbox();
 				case 'hank':
-					trace(mustHit);
 					if (!mustHit)
 					{
 						frames = Paths.getSparrowAtlas('hankNotes');

@@ -179,7 +179,7 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('HANKB'));
 		if(FlxG.save.data.antialiasing)
 			{
 				bg.antialiasing = true;

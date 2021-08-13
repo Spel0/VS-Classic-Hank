@@ -1100,7 +1100,7 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-			case 'hankPhaseOne' | 'hankPhaseTwo' | 'hankPhaseThree':
+			case 'hank-PhaseOne' | 'hank-PhaseTwo' | 'hank-PhaseThree':
 				camPos.set(dad.getGraphicMidpoint().x + 400, dad.getGraphicMidpoint().y);
 		}
 

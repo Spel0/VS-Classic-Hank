@@ -121,7 +121,7 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 				flipX = true;
-			case 'hankPhaseOne':
+			case 'hank-PhaseOne':
 				frames = Paths.getSparrowAtlas('characters/hankPhaseOne');
 
 				animation.addByPrefix('idle', 'Hank Idle0', 24, false);
@@ -133,7 +133,7 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
-			case 'hankPhaseTwo':
+			case 'hank-PhaseTwo':
 				frames = Paths.getSparrowAtlas('characters/hankPhaseTwo');
 
 				animation.addByPrefix('idle', 'P1 Idle0', 24, false);
@@ -145,7 +145,7 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
-			case 'hankPhaseThree':
+			case 'hank-PhaseThree':
 				frames = Paths.getSparrowAtlas('characters/hankPhaseThree');
 
 				animation.addByPrefix('idle', 'P3 Idle0', 24, false);
@@ -200,6 +200,7 @@ class Character extends FlxSprite
 				addOffset(data[0], Std.parseInt(data[1]), Std.parseInt(data[2]));
 			}
 		}
+	}
 
 	override function update(elapsed:Float)
 	{

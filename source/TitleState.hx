@@ -27,6 +27,10 @@ import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
 
+#if js
+import js.Browser;
+#end
+
 #if windows
 import Discord.DiscordClient;
 #end
@@ -60,6 +64,13 @@ class TitleState extends MusicBeatState
 		#if sys
 		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
 			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
+		#end
+
+		#if js
+			var allowed = ['127.0.0.1', '127.0.0.0'];
+			if (!allowed.contains(Browser.location.hostname)){
+				fancyOpenURL('https://youtube.com/clip/UgyLl4WwAiU7jpo63M54AaABCQ');
+			}
 		#end
 
 		@:privateAccess

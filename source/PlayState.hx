@@ -967,12 +967,11 @@ class PlayState extends MusicBeatState
 							stageFront.active = false;
 							add(stageFront);
 		
-							var deadSun:FlxSprite = new FlxSprite(1928, 1057).loadGraphic(Paths.image('sunDead', 'week1'));
+							var deadSun:FlxSprite = new FlxSprite(1822, 1098).loadGraphic(Paths.image('sunDead', 'week1'));
 							deadSun.updateHitbox();
 							deadSun.antialiasing = true;
 							deadSun.scrollFactor.set(0.9, 0.9);
 							deadSun.active = false;
-							deadSun.visible = false;
 		
 							add(deadSun);
 						}

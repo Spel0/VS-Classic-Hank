@@ -1,0 +1,4 @@
+hank:left modBf:right
+:0:talk:0.05:normal:There. You done now?
+:1:talk:0.05:normal:beepo be beepo  bopo  skbep bopo bep bip
+:0:talk:0.2:normal:...

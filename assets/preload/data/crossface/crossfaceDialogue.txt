@@ -1,0 +1,5 @@
+hank:left modBf:right
+:0:talk:0.05:normal:Excuse me, could you please turn that damn music off?
+:1:talk:0.05:normal:bap beep de  bop beep beepaa beepaa beepo boop
+:0:talk:0.05:normal:...What?
+:0:talk:0.07:normal:Oh, I see how it is. Fine, if it makes you go away...

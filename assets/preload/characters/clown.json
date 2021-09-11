@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				13,
+				2
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Tricky Idle0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				22,
+				-17
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Tricky Up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				6,
+				-116
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Tricky Right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				14,
+				-56
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Tricky Left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				22,
+				-105
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Tricky Down0",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/FunnyClown",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "clown",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		255,
+		255
+	],
+	"camera_position": [
+		100,
+		200
+	],
+	"sing_duration": 4,
+	"scale": 1
+}

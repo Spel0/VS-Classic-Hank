@@ -1,0 +1,6 @@
+hank:Left modBf:right
+:0:talk:0.07:normal:You really are as dumb as you look, aren't you?
+:1:talk:0.04:normal:beeeep beepbop beep-
+:0:talk:0.07:normal:My name is Hank J Wimbleton.
+:0:talk:0.08:angry:Try and sing your way out of this one.
+:1:scared:0.06:normal:!!!

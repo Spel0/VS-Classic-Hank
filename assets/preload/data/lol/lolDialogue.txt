@@ -1,0 +1,5 @@
+clown:left modBf:right
+:0:talk:0.06:normal:YOU LOOK LIKE NINJA
+:1:talk:0.06:normal:what
+:0:talk:0.06:normal:GOOFY ASS MF
+:0:talk:0.06:normal:HONK HONK

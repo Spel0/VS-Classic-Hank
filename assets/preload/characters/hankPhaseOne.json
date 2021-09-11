@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				10,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "Hank Idle0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				69,
+				38
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "Hank Up0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				55,
+				-44
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "Hank Right0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				98,
+				4
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "Hank Left0",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				70,
+				-30
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "Hank Down0",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/hankPhaseOne",
+	"position": [
+		0,
+		0
+	],
+	"healthicon": "hank",
+	"flip_x": false,
+	"healthbar_colors": [
+		255,
+		255,
+		255
+	],
+	"camera_position": [
+		40,
+		60
+	],
+	"sing_duration": 4,
+	"scale": 1
+}
